@@ -11,9 +11,9 @@
   <ion-list>
     <button ion-item *ngFor="let bar of bars" (click)="barTapped($event, bar)">
       <ion-icon name="{{bar.icon}}" item-left></ion-icon>
-      {{bar.title}}
+      {{bar.address}}
       <div class="item-note" item-right>
-        {{bar.note}}
+        {{bar.name}}
       </div>
     </button>
   </ion-list>
