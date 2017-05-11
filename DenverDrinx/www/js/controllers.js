@@ -36,8 +36,6 @@ function UberCtrl(){
   console.log('uber controller working as expected');
 }
 
-function AccountCtrl($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+function AccountCtrl() {
+
 }
