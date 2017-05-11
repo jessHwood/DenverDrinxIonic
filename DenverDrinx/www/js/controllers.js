@@ -7,8 +7,27 @@ angular.module('controllers', [])
 
 .controller('AccountCtrl', AccountCtrl);
 
-function MapCtrl() {
-  //map related stuff goes here
+MapCtrl.$inject = ['$cordovaGeolocation'];
+function MapCtrl($cordovaGeolocation) {
+  var self = this;
+  var options = {timeout: 10000, enableHighAccuracy: true};
+ 
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+ 
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+    var mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    self.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+ 
+  }, function(error){
+    console.log("Could not get location");
+  });
+
+
 
 }
 
@@ -22,9 +41,8 @@ function BarsCtrl(Bars) {
   //});
   var self = this;
   self.bars = Bars.all();
-  // self.remove = function(bar) {
-  //   Bars.remove(bar);
-  // };
+
+//create timer of each bar
   self.bars.forEach(function(bar){
     bar.timeLeft = function(){
       //console.log(this);
@@ -55,7 +73,7 @@ function BarsCtrl(Bars) {
               return this.name + ' has minutes left: ' + timer;
             }
           }
-          
+
           if (currentHour >= this.hours[i][0]){
             //happy hour is in progress
               timer = 0;
@@ -73,7 +91,7 @@ function BarsCtrl(Bars) {
       }
     };
   });
-  self.bars.forEach(function(bar){ bar.timeLeft(); });
+  //end timer
 }
 
 function BarDetailCtrl($stateParams, Bars) {
