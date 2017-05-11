@@ -305,7 +305,7 @@ ion-tabs {
 
 .tabs-top {
   &.tabs-striped {
-    padding-bottom:0;
+    padding-bottom:4;
     .tab-item{
       background: transparent;
       // animate the top bar, leave bottom for platform consistency
@@ -346,7 +346,7 @@ ion-tabs {
     }
     &.tabs-icon-left{
        .tab-item{
-          margin-top: 1px;
+          margin-top: 5px;
           &.tab-item-active,
           &.active,
           &.activated {
@@ -400,7 +400,7 @@ ion-tabs {
   font-size: $tabs-text-font-size;
   font-family: $font-family-sans-serif;
 
-  opacity: 0.7;
+  
 
   &:hover {
     cursor: pointer;
