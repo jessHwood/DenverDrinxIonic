@@ -27,8 +27,6 @@ function MapCtrl($cordovaGeolocation) {
     console.log("Could not get location");
   });
 
-
-
 }
 
 function BarsCtrl(Bars) {
