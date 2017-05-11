@@ -6,8 +6,8 @@ angular.module('factories', [])
   // Some fake testing data
   var bars =  [{
     day       : [ 4 ],
-    hours       : [ [ 14 , 17 ] ],
-    minutes     : [ [ 0 , 30 ] ],
+    hours       : [ [ 15 , 17 ] ],
+    minutes     : [ [ 40 , 30 ] ],
     address     : "1234 Seseme Street",
     name      : "Big Bird's Booze House",
     drinkSpecials : "$1.00 Double-Shots",
@@ -16,7 +16,7 @@ angular.module('factories', [])
   },
   {
     day       : [ 4 ],
-    hours       : [ [ 14 , 17 ] ],
+    hours       : [ [ 14 , 15 ] ],
     minutes     : [ [ 0 , 30 ] ],
     address     : "5678 Seseme Street",
     name      : "Oscar's Hootch Can",
