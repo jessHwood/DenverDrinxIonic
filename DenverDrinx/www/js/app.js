@@ -1,7 +1,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('denver-drinx', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('denver-drinx', ['ionic', 'controllers', 'factories'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -11,7 +11,7 @@ angular.module('denver-drinx', ['ionic', 'starter.controllers', 'starter.service
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
-    }
+   }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
@@ -25,6 +25,7 @@ angular.module('denver-drinx', ['ionic', 'starter.controllers', 'starter.service
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+
   $stateProvider
 
   // setup an abstract state for the tabs directive
@@ -36,34 +37,44 @@ angular.module('denver-drinx', ['ionic', 'starter.controllers', 'starter.service
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.map', {
+    url: '/map',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-map': {
+        templateUrl: 'templates/tab-map.html',
+        controller: 'MapCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.bars', {
+      url: '/bars',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-bars': {
+          templateUrl: 'templates/tab-bars.html',
+          controller: 'BarsCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.bar-detail', {
+      url: '/bars/:barId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-bars': {
+          templateUrl: 'templates/bar-detail.html',
+          controller: 'BarDetailCtrl'
         }
       }
     })
+
+  .state('tab.uber', {
+    url : '/uber',
+    views: {
+      'tab-uber': {
+        templateUrl: 'templates/tab-uber.html',
+        controller: 'UberCtrl'
+      }
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
@@ -76,6 +87,6 @@ angular.module('denver-drinx', ['ionic', 'starter.controllers', 'starter.service
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/bars');
 
 });

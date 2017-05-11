@@ -4,11 +4,14 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{chat.name}}">
+<ion-view ng-controller = "BarDetailCtrl as oneBar" view-title="{{oneBar.bar.name}}">
   <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
+ <!--    <img ng-src="{{bar.img}}" style="width: 64px; height: 64px"> -->
     <p>
-      {{chat.lastText}}
+      {{oneBar.bar.drinkSpecials}}
     </p>
   </ion-content>
 </ion-view>
+
+
+

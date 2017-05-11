@@ -1,0 +1,16 @@
+<ion-view view-title="Happy Hours">
+  <ion-content ng-controller ="BarsCtrl as barCtrl">
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bar in barCtrl.bars" type="item-text-wrap" href="#/tab/bars/{{bar.id}}">
+        <!-- <img ng-src="{{bar.img}}"> -->
+        <h2>{{bar.name}}</h2>
+        <p>{{bar.address}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+<!--         <ion-option-button class="button-assertive" ng-click="remove(bar)">
+          Delete
+        </ion-option-button> -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
