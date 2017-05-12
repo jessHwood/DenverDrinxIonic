@@ -52,13 +52,14 @@ function BarsCtrl(Bars) {
       for (i = 0; i < this.day.length; i++){
 
         if (this.day[i] === currentTime.getDay()) {
-          
+//console.log('here');
           var currentHour = currentTime.getHours();
           var currentMinutes = currentTime.getMinutes();
           //console.log('found a happy hour for today!');
 
           if (currentHour <= this.hours[i][0]){
             //happy hour has not started yet
+
            timer += (this.hours[i][0] - currentHour) * 60;
            timer += (this.minutes[i][0] - currentMinutes);
             if (timer > 0){

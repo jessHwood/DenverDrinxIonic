@@ -18,7 +18,7 @@ angular.module('factories', [])
 
         day             : [ 1, 2, 3, 4, 5 ],
         hours             : [ [15 , 22], [15 , 18], [15 , 18], [15 , 18], [15 , 18] ],
-        minutes         : [ [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ] ],
+        minutes         : [ [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ] ],
         address            : "The Source, 3350 Brighton Boulevard, Unit 105",
         phone            : "(303) 296-2747",
         name            : "Comida",
