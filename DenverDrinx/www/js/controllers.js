@@ -109,8 +109,9 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
 
 }
 
-function BarDetailCtrl($stateParams, Bars) {
+function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
+  console.log();
   self.bar = Bars.get($stateParams.barId);
 }
 
