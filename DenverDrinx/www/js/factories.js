@@ -31,7 +31,7 @@ function Bars($http) {
     address            : "The Source, 3350 Brighton Boulevard, Unit 105",
     phone            : "(303) 296-2747",
     name            : "Comida",
-    drinkSpecials    : "$5 Margaritas and Cocktails, $2-$3 Beers, and $5 House Wines.",
+    drinkSpecials    : "$5 Margaritas and Cocktails, $2-$3 Beers, $5 House Wines.",
     foodSpecials    : "$4 Street Snacks, $15 Bacon Tacos with a shot of Maker's Mark",
     image            : "https://cdn.wedding-spot.com/images/venues/2751/comida-at-the-source-wedding-denver-co-1.1427695390.jpg",
     description        : "Sit-down extension of a popular food truck featuring Mexican street eats & creative margaritas.",
