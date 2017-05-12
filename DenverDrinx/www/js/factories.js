@@ -41,6 +41,7 @@ function Bars($http) {
 ];
 
 
+
   return {
     all: function() {
       return bars;
