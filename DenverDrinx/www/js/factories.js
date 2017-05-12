@@ -21,7 +21,7 @@ function Bars($http) {
     description: "this is a description",
     phone: "555-555-5555",
     website: "http://www.cbpotts.com/colorado/denvertech.html",
-    iamge: "http://source.colostate.edu/wp-content/uploads/2016/04/shark-large.jpg",
+    image: "http://source.colostate.edu/wp-content/uploads/2016/04/shark-large.jpg",
     id : 1
   },
   {
@@ -46,7 +46,7 @@ function Bars($http) {
       return bars;
     },
     makeBars: function(){
-      //http request
+      
     },
     get: function(id){
       return bars[id-1];
