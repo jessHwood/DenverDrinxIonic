@@ -5,29 +5,27 @@
   The Friends service returns an array of friend data
 -->
 <ion-view ng-controller = "BarDetailCtrl as oneBar" view-title="{{oneBar.bar.name}}">
-  <ion-content class="padding">
+  <ion-content class="padding text-center">
+    <ion-item>
     <ion-card>
-      <img ng-src="{{oneBar.bar.image}}" style="width: 300px; height: 300px">
-    <ion-card-content>
-      <ion-card-title>
-      {{oneBar.bar.name}}
-      </ion-card-title>
-        <p>
-          {{oneBar.bar.description}}
-        </p>
-        <p>
-          {{oneBar.bar.drinkSpecials}}
-          </p>
-          <p>
-          {{oneBar.bar.foodSpecials}}
-        </p>
-        <p>
-          {{oneBar.bar.website }}
-        </p>
-    </ion-card-content>
-  </ion-card>
-
-
+      <img ng-src="{{oneBar.bar.image}}" style="width: 600px; height: 500px">
+      <ion-card-content>
+            Details
+            <p>
+              {{oneBar.bar.description}}
+            </p>
+            <p>
+              {{oneBar.bar.drinkSpecials}}
+            </p>
+            <p>
+              {{oneBar.bar.foodSpecials}}
+            </p>
+            <p>
+              {{oneBar.bar.website }}
+            </p>
+      </ion-card-content>
+    </ion-card>
+    </ion-item>
   </ion-content>
 </ion-view>
 
