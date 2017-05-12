@@ -7,13 +7,13 @@ angular.module('controllers', [])
 
 .controller('AccountCtrl', AccountCtrl);
 
-MapCtrl.$inject = ['$cordovaGeolocation'];
-function MapCtrl($cordovaGeolocation) {
+MapCtrl.$inject = ['$cordovaGeolocation', 'Bars', '$http'];
+function MapCtrl($cordovaGeolocation, Bars, $http) {
   var self = this;
+  self.bars = Bars.all();
   var options = {timeout: 10000, enableHighAccuracy: true};
- 
+  //get position of user
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
- 
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
     var mapOptions = {
@@ -21,12 +21,39 @@ function MapCtrl($cordovaGeolocation) {
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
+    //create a map based on user position
     self.map = new google.maps.Map(document.getElementById("map"), mapOptions);
- 
+    
+    google.maps.event.addListenerOnce(self.map, 'idle', function(){
+    //this marker is the user's location
+      var marker = new google.maps.Marker({
+        map: self.map,
+        animation: google.maps.Animation.DROP,
+        position: latLng,
+        icon: "../img/markTEST.png"
+      });  
+
+      //for each bar, http request google and drop a marker on the map
+      self.bars.forEach(function(bar){
+        var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+        $http
+          .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
+          .then(function(location){
+            //marker specific to each bar
+            var marker = new google.maps.Marker({
+                map: self.map,
+                animation: google.maps.Animation.DROP,
+                position: location.data.results[0].geometry.location
+                //icon: [icon location]
+            });  
+          });   
+      });     
+    });
   }, function(error){
     console.log("Could not get location");
   });
+
+
 
 }
 
@@ -52,13 +79,14 @@ function BarsCtrl(Bars) {
       for (i = 0; i < this.day.length; i++){
 
         if (this.day[i] === currentTime.getDay()) {
-          
+//console.log('here');
           var currentHour = currentTime.getHours();
           var currentMinutes = currentTime.getMinutes();
           //console.log('found a happy hour for today!');
 
           if (currentHour <= this.hours[i][0]){
             //happy hour has not started yet
+
            timer += (this.hours[i][0] - currentHour) * 60;
            timer += (this.minutes[i][0] - currentMinutes);
             if (timer > 0){
@@ -91,6 +119,7 @@ function BarsCtrl(Bars) {
     };
   });
   //end timer
+
 }
 
 function BarDetailCtrl($stateParams, Bars) {
