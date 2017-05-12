@@ -3065,6 +3065,10 @@ body {
   margin: 0;
   line-height: 1; }
 
+/*.item.wrap, .item-content.wrap {
+white-space: normal;
+}*/
+
 /**
  * Remove default outlines.
  */
