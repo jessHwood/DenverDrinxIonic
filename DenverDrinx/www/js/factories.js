@@ -47,6 +47,9 @@ function Bars($http) {
     },
     makeBars: function(){
       //http request
+    },
+    get: function(id){
+      return bars[id-1];
     }
   };
 }
