@@ -1,26 +1,31 @@
 
 <ion-view ng-controller = "BarDetailCtrl as oneBar" view-title="{{oneBar.bar.name}}">
   <ion-content>
+    <div class="list card">
   
-  <div class="list card">
-    <div class="card rounded item-item-body">
-    <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px;">
-      <h2>Details</h2>
-        <ul>
-          <li>
-            {{oneBar.bar.description}}
-          </li>
-          <li>
-            {{oneBar.bar.drinkSpecials}}
-          </li>
-          <li>
-            {{oneBar.bar.foodSpecials}}
-          </li>
-          <li>
-            {{oneBar.bar.website }}
-          </li>
-        </ul>
-      </div>
+      <div class="item">
+        <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px">
+      
+      <div class="item item-body">
+        <h2>Details</h2>
+          <ul>
+            <li>
+              {{oneBar.bar.description}}
+            </li>
+            <li>
+              {{oneBar.bar.drinkSpecials}}
+            </li>
+            <li>
+              {{oneBar.bar.foodSpecials}}
+            </li>
+            <li>
+    <!-- Link to site not working -->
+              <a class="item text-center" href="/{{ oneBar.bar.website }}">
+              Visit the comida site
+              </a>
+            </li>
+          </ul>
+      </div>  
   </ion-content>
 </ion-view>
 

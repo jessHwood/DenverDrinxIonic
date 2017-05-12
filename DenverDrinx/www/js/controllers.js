@@ -35,7 +35,8 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 
       //for each bar, http request google and drop a marker on the map
       self.bars.forEach(function(bar){
-        var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+        //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+        var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
         $http
           .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
           .then(function(location){
@@ -59,8 +60,39 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
   var self = this;
   self.bars = Bars.all();
 
-//create timer of each bar
+//create timer (and distance) of each bar
   self.bars.forEach(function(bar){
+
+    //find distance to each bar
+    //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+    var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
+
+   $http
+      .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
+      .then(function(location){
+        //get position of user
+        var options = {timeout: 5000, enableHighAccuracy: true};
+          
+          $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+        
+    bar.distance = function(){
+      //distance calculation
+      function distance(lat1, lon1, lat2, lon2) {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        return dist.toPrecision(2);
+      }
+      return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
+    };
+
+
+    //timer function
     bar.timeLeft = function(){
       var currentTime = new Date();
       var timer = 0;
@@ -104,15 +136,18 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
           }
         }
       }
-    };
-  }); //end timer
-
+    };//end timer
+    });
+    });
+  });
 }
 
 function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
   console.log();
   self.bar = Bars.get($stateParams.barId);
+
+  //get directions (list) to this bar
 }
 
 function UberCtrl(){
