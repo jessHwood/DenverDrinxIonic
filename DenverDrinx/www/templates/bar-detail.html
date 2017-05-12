@@ -1,28 +1,30 @@
 
 <ion-view ng-controller = "BarDetailCtrl as oneBar" view-title="{{oneBar.bar.name}}">
   <ion-content>
-    <ion-item class="item-text-wrap">
-        <img ng-src="{{oneBar.bar.image}}" style="width: 600px; height: 500px">
-            <p>
-            Details
-            </p>
-          <ul>
-            <li>
-              {{oneBar.bar.description}}
-            </li>
-            <li>
-              {{oneBar.bar.drinkSpecials}}
-            </li>
-            <li>
-              {{oneBar.bar.foodSpecials}}
-            </li>
-            <li>
-              {{oneBar.bar.website }}
-            </li>
-          </ul>
-    </ion-item>
+  
+  <div class="list card">
+    <div class="card rounded item-item-body">
+    <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px;">
+      <h2>Details</h2>
+        <ul>
+          <li>
+            {{oneBar.bar.description}}
+          </li>
+          <li>
+            {{oneBar.bar.drinkSpecials}}
+          </li>
+          <li>
+            {{oneBar.bar.foodSpecials}}
+          </li>
+          <li>
+            {{oneBar.bar.website }}
+          </li>
+        </ul>
+      </div>
   </ion-content>
 </ion-view>
+
+<!-- for image display style="width: 600px; height: 500px" -->
 
 
 
