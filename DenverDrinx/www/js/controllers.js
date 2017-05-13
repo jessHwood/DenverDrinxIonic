@@ -58,7 +58,14 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
   var self = this;
-  self.bars = Bars.all();
+  self.bars = Bars.all().filter(function(bar){
+    var date = new Date();
+    today = date.getDay();
+    for (i = 0; i < bar.day.length; i++){
+      if (bar.day[i] === today) { return bar; }
+    }
+
+  });
 
 //create timer (and distance) of each bar
   self.bars.forEach(function(bar){
