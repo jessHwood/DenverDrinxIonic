@@ -3,12 +3,13 @@
   <ion-nav-title class="light">{{oneBar.bar.name}}</ion-nav-title>
     <ion-content>
       <div class="list card">
-  
-      <div class="item">
+      <div id="card1" class="item">
         <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px">
-      
-      <div class="item item-body">
-        <h2>Details</h2>
+      <!-- Below displays bar information -->
+      <div id="card1" class="item item-body light">
+          <b>Details</b>
+          <br>
+          <br>
           <ul>
             <li>
               {{oneBar.bar.description}}
@@ -19,18 +20,14 @@
             <li>
               {{oneBar.bar.foodSpecials}}
             </li>
-            <li>
-    <!-- Link to site not working -->
-              <a class="item text-center" href="/{{ oneBar.bar.website }}">
-              Visit the comida site
-              </a>
+            <li>  <!-- Link to bar sites -->
+            <a id="card1" class="item text-center light" href="{{ oneBar.bar.website }}">{{ oneBar.bar.website }}</a>
             </li>
           </ul>
       </div>  
   </ion-content>
 </ion-view>
 
-<!-- for image display style="width: 600px; height: 500px" -->
 
 
 

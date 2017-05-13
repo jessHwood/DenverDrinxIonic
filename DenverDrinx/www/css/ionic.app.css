@@ -18,6 +18,44 @@
   position: relative;
   bottom: 7px; }
 
+.item .item-content {
+  background-color: transparent !important; }
+
+#mainList {
+  border-radius: 15px; }
+
+.list {
+  border-style: rigid #185665; }
+
+#card1 {
+  background-color: #185665;
+  border-radius: 15px; }
+
+#time {
+  font-size: 15px;
+  position: relative;
+  bottom: 8px;
+  color: #F9F9F9; }
+
+#miles {
+  font-size: 15px;
+  position: relative;
+  bottom: 30px;
+  color: #F9F9F9; }
+
+#name {
+  font-size: 20px;
+  position: relative;
+  top: 14px; }
+
+#address {
+  position: relative;
+  top: 14px;
+  color: #F9F9F9; }
+
+b {
+  text-decoration: underline; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
