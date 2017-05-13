@@ -35,7 +35,7 @@ function Bars($http) {
     foodSpecials    : "$4 Street Snacks, $15 Bacon Tacos with a shot of Maker's Mark",
     image            : "https://cdn.wedding-spot.com/images/venues/2751/comida-at-the-source-wedding-denver-co-1.1427695390.jpg",
     description        : "Sit-down extension of a popular food truck featuring Mexican street eats & creative margaritas.",
-    website            : "eatcomida.com/en/",
+    website            : "http://www.eatcomida.com",
     id: 2
   }
 ];
