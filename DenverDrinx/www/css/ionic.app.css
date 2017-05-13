@@ -13,7 +13,10 @@
   padding: 0; }
 
 .nav-bar-title {
-  font-family: 'Pacifico', cursive; }
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  position: relative;
+  bottom: 7px; }
 
 /*!
   Ionicons, v2.0.1
