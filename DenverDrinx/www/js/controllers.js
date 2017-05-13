@@ -57,6 +57,7 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 
 BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
+ // setTimeout(function(){
   var self = this;
   self.bars = Bars.all().filter(function(bar){
     var date = new Date();
@@ -147,8 +148,9 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
     });
     });
   });
-}
 
+//}, 10000);
+}
 function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
   console.log();
