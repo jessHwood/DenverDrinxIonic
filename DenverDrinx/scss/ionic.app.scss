@@ -33,7 +33,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding: 0;
 }
 
+.nav-bar-title {
+	font-family: 'Pacifico', cursive;
+}
+
 
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import url("https://fonts.googleapis.com/css?family=Pacifico:400");
