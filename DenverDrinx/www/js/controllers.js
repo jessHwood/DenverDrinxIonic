@@ -108,9 +108,18 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
-        return dist.toPrecision(2);
+        return dist;
       }
-      return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng) + ' miles away';
+      var miles = distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
+     //console.log(miles);
+      if (miles < 1) {
+        //convert to yards
+        var yards = miles * 1760;
+        //return 3 digist if 
+        //if (yards < 1000) { return yards.toPrecision(3); }
+        return Math.floor(yards) + ' yards';
+      }
+      else { return miles.toPrecision(2) + ' miles'; }
     };
 
 
@@ -135,14 +144,14 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.hours[i][0] - currentHour) * 60;
             timer += (this.minutes[i][0] - currentMinutes);
             if (timer > 0){
-              return 'Starts in: ' + timer + ' minutes';
+              return 'Starts at ' + toClockTime([this.hours[i][0], this.minutes[i][0]]);
             } 
             //or is happy hour is in progress?
             if (timer <= 0){
               timer = 0;
               timer += (this.hours[i][1] - currentHour) * 60;
               timer += (this.minutes[i][1] - currentMinutes);
-              return 'Ends in: ' + timer + ' minutes';
+              return 'Ends in ' + fixTime(timer);
             }
           }
           //happy hour is in progress
@@ -152,7 +161,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.minutes[i][1] - currentMinutes);
             //still time left!
             if (timer > 0){
-              return 'Ends in: ' + timer + ' minutes';
+              return 'Ends in ' + fixTime(timer);
             }   
             //or has it ended?
             if (timer <= 0) {
@@ -165,8 +174,30 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
     });
   });
 });
-//}, 10000);
+
+function fixTime(timer){
+  numMins = timer%60;
+  if (numMins < 10) { numMins = '0' + numMins; }
+  numHours = Math.floor(timer/60);
+  return numHours + ':' + numMins;
 }
+
+function toClockTime(timeArray){
+  var postfix = ' AM';
+  var hours = timeArray[0];
+  var minutes = timeArray[1];
+  if (hours > 12) { //past noon
+    hours -= 12; 
+    postfix = ' PM'; 
+  }
+  if (minutes < 10) { //add a prepending 0
+    minutes = '0' + minutes; 
+  }
+  return hours + ':' + minutes + postfix;
+}
+
+
+}//end bar control
 function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
   self.bar = Bars.get($stateParams.barId);
