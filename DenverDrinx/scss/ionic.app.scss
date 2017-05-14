@@ -64,6 +64,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-family: 'Oswald', sans-serif;
     background-color: #355c7d;
     border-radius: 15px;
+    background-color: transparent !important;
 }
 
 #card3 {
@@ -77,22 +78,25 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
     position: relative;
-    bottom: 8px;
+    left: 34px;
     color: #F9F9F9;
+    top: 13px;
 }
 
 #miles {
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
     color: #F9F9F9;
+    position: relative;
+    bottom: 10px;
 }
 
 #name {
     font-family: 'Oswald', sans-serif;
     font-size: 20px;
     position: relative;
-    top: 2px;
-    left: 10px;
+    top: 20px;
+    
 }
 
 #address {
@@ -105,8 +109,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 b {
+    font-family: 'Oswald', sans-serif;  
+}
+
+p {
     font-family: 'Oswald', sans-serif;
-    text-decoration: underline;
+    color: #fff;
+
 }
 
 // Include all of Ionic

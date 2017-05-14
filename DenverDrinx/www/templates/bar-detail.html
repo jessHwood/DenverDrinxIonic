@@ -1,23 +1,19 @@
 
 <ion-view ng-controller = "BarDetailCtrl as oneBar">
-  <ion-nav-title class="light">{{oneBar.bar.name}}</ion-nav-title>
+  <ion-nav-title class="energized">{{oneBar.bar.name}}</ion-nav-title>
     <ion-content>
       <div class="list card">
       <div id="card1" class="item">
         <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px">
       <!-- Below displays bar information -->
       <div id="card3" class="item item-body light">
-          <b>Details</b>
-          <br>
-          <br>
-              {{oneBar.bar.description}}
+              <b>{{oneBar.bar.description}}</b>
             <hr>
               {{oneBar.bar.drinkSpecials}}
             <hr>
               {{oneBar.bar.foodSpecials}}
-            
+            </div> 
              <!-- Link to bar sites -->
             <a id="card3" class="item text-center light" href="{{ oneBar.bar.website }}">{{ oneBar.bar.website }}</a>
-      </div>  
   </ion-content>
 </ion-view>
