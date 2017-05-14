@@ -170,13 +170,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
 });
 
 self.distString = function(miles){
-  if (!miles) { return ""; }
-        if (miles < 1) {
-      //convert to yards
-      var yards = miles * 1760;
-      return Math.floor(yards) + ' yards';
-    }
-    else { return miles.toPrecision(2) + ' miles'; }
+   return miles.toPrecision(2) + ' miles'; 
 };
 
 function fixTime(timer){
