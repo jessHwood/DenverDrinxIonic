@@ -4,15 +4,13 @@
 
 // For example, you might change some of the default colors:
 
-$light:                           #F9F9F9 !default;
-// $stable:                          #f8f8f8 !default;
-// $positive:                        #387ef5 !default;
-// $calm:                            #11c1f3 !default;
+$light:                           #fff !default;
+// $stable:                       #f8f8f8 !default;
+// $positive:                     #387ef5 !default; $calm:                            #6c5b7b !default;
 $balanced:                        #79CDCD !default;
-$energized:                       #FF215C !default;
-// $assertive:                       #ef473a !default;
-$royal:                           #185665 !default;
-// $dark:                            #444 !default;
+$energized:                       #f67280 !default;
+$assertive:                       #7f8c8d !default;
+$royal:                           #355c7d !default; $dark:                            #000 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -37,7 +35,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	font-family: 'Pacifico', cursive;
 	font-size: 25px;
 	position: relative;
-	bottom: 7px;
+	bottom: 5px;
+    color: #f67280;
 }
 
 #backBtn {
@@ -52,23 +51,24 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 #mainList {
-    border-radius: 15px;
+    
+    background-color: #355c7d;
 }
 .list {
-    border-style: rigid #185665;
+    border-style: rigid #7f8c8d;
 }
 
 //////Styles for bar-details
 
 #card1{
     font-family: 'Oswald', sans-serif;
-    background-color: #185665;
+    background-color: #355c7d;
     border-radius: 15px;
 }
 
 #card3 {
     font-family: 'Oswald', sans-serif;
-    background-color: #185665;
+    background-color: #355c7d;
     
 }
 
@@ -84,8 +84,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 #miles {
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
-    position: relative;
-    bottom: 15px;
     color: #F9F9F9;
 }
 
