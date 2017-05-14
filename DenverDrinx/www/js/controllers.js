@@ -9,8 +9,20 @@ angular.module('controllers', [])
 
 MapCtrl.$inject = ['$cordovaGeolocation', 'Bars', '$http'];
 function MapCtrl($cordovaGeolocation, Bars, $http) {
+
   var self = this;
-  self.bars = Bars.all();
+  self.getbars = Bars.all().then(function(res){
+  self.bars = res.data.filter(function(bar){
+    var date = new Date();
+    today = date.getDay();
+    for (i = 0; i < bar.day.length; i++){
+      if (bar.day[i] === today) { return bar; }
+    }
+
+  });
+
+
+
   var options = {timeout: 10000, enableHighAccuracy: true};
   //get position of user
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
@@ -53,18 +65,21 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
   }, function(error){
     console.log("Could not get location");
   });
+});
 }//end MapCtrl
 
 BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
+ //setTimeout(function(){
   var self = this;
-  self.bars = Bars.all().filter(function(bar){
+  self.getbars = Bars.all().then(function(res){
+
+    self.bars = res.data.filter(function(bar){
     var date = new Date();
     today = date.getDay();
     for (i = 0; i < bar.day.length; i++){
       if (bar.day[i] === today) { return bar; }
     }
-
   });
 
 //create timer (and distance) of each bar
@@ -103,10 +118,13 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
     bar.timeLeft = function(){
       var currentTime = new Date();
       var timer = 0;
+      //problem with events that go past midnight (i.e WILLCALL bar)
 
       for (i = 0; i < this.day.length; i++){
-        //if happy hour is today
-        if (this.day[i] === currentTime.getDay()) {
+          //account for events past midnight
+          if (this.hours[i][1] < this.hours[i][0]){
+            this.hours[i][1] += 23;
+          }
           //get current time
           var currentHour = currentTime.getHours();
           var currentMinutes = currentTime.getMinutes();
@@ -142,16 +160,15 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             }
           }
         }
-      }
     };//end timer
     });
     });
   });
+});
+//}, 10000);
 }
-
 function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
-  console.log();
   self.bar = Bars.get($stateParams.barId);
 
   //get directions (list) to this bar
