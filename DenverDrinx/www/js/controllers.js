@@ -72,7 +72,7 @@ BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
  //setTimeout(function(){
   var self = this;
-  self.getbars = Bars.all().then(function(res){
+  Bars.all().then(function(res){
 
     self.bars = res.data.filter(function(bar){
     var date = new Date();
@@ -110,16 +110,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = dist * 60 * 1.1515;
         return dist;
       }
-      var miles = distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
-     //console.log(miles);
-      if (miles < 1) {
-        //convert to yards
-        var yards = miles * 1760;
-        //return 3 digist if 
-        //if (yards < 1000) { return yards.toPrecision(3); }
-        return Math.floor(yards) + ' yards';
-      }
-      else { return miles.toPrecision(2) + ' miles'; }
+      return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
     };
 
 
@@ -169,11 +160,24 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             }
           }
         }
+
     };//end timer
     });
     });
   });
+  //sort???
+
 });
+
+self.distString = function(miles){
+  if (!miles) { return ""; }
+        if (miles < 1) {
+      //convert to yards
+      var yards = miles * 1760;
+      return Math.floor(yards) + ' yards';
+    }
+    else { return miles.toPrecision(2) + ' miles'; }
+};
 
 function fixTime(timer){
   numMins = timer%60;
@@ -196,11 +200,12 @@ function toClockTime(timeArray){
   return hours + ':' + minutes + postfix;
 }
 
-
 }//end bar control
 function BarDetailCtrl(Bars, $stateParams) {
   var self = this;
-  self.bar = Bars.get($stateParams.barId);
+  Bars.get($stateParams.barId).then(function(res){
+    self.bar = res.data;
+  });
 
   //get directions (list) to this bar
 }
