@@ -17,8 +17,7 @@ function Bars($http) {
       
     },
     get: function(id){
-      console.log('WE NEED TO ADD A GET/:id route to our server');
-      return $http.get('http://localhost:3000/api/bars/' + id);
+      return $http.get('https://enigmatic-brushlands-11009.herokuapp.com/api/bars/' + id);
     }
   };
 }
