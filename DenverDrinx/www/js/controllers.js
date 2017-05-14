@@ -58,7 +58,14 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
   var self = this;
-  self.bars = Bars.all();
+  self.bars = Bars.all().filter(function(bar){
+    var date = new Date();
+    today = date.getDay();
+    for (i = 0; i < bar.day.length; i++){
+      if (bar.day[i] === today) { return bar; }
+    }
+
+  });
 
 //create timer (and distance) of each bar
   self.bars.forEach(function(bar){
@@ -88,7 +95,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = dist * 60 * 1.1515;
         return dist.toPrecision(2);
       }
-      return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
+      return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng) + ' miles away';
     };
 
 
@@ -110,14 +117,14 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.hours[i][0] - currentHour) * 60;
             timer += (this.minutes[i][0] - currentMinutes);
             if (timer > 0){
-              return this.name + ' starts in :' + timer + ' minutes';
+              return 'Starts in: ' + timer + ' minutes';
             } 
             //or is happy hour is in progress?
             if (timer <= 0){
               timer = 0;
               timer += (this.hours[i][1] - currentHour) * 60;
               timer += (this.minutes[i][1] - currentMinutes);
-              return this.name + ' has minutes left: ' + timer;
+              return 'Ends in: ' + timer + ' minutes';
             }
           }
           //happy hour is in progress
@@ -127,11 +134,11 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.minutes[i][1] - currentMinutes);
             //still time left!
             if (timer > 0){
-              return this.name + ' has minutes left: ' + timer;
+              return 'Ends in: ' + timer + ' minutes';
             }   
             //or has it ended?
             if (timer <= 0) {
-              return this.name + ' is over';
+              return 'Ended';
             }
           }
         }

@@ -11,9 +11,9 @@ function Bars($http) {
   // Some fake testing data
   var bars =  [
   {
-    day       : [ 1, 2, 3, 4, 5 ],
-    hours       : [ [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ] ],
-    minutes     : [ [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ] ],
+    day       : [ 1, 2, 3, 4, 5, 6 ],
+    hours       : [ [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ], [ 15 , 18 ] ],
+    minutes     : [ [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ], [ 0 , 0 ] ],
     address     : "6575 South Greenwood Plaza Boulevard, Englewood, CO 80112",
     name      : "C.B. & Potts",
     drinkSpecials : "$3.25 POTTS Beers, $3.25 Well Drinks, $3.25 POTTS Teas, $3.25 6oz Pour of House Wine",
