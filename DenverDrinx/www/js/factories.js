@@ -11,7 +11,7 @@ function Bars($http) {
 
   return {
     all: function() {
-      return $http.get('http://localhost:3000/api/bars/index');
+      return $http.get('https://enigmatic-brushlands-11009.herokuapp.com/api/bars/index');
     },
     makeBars: function(){
       
@@ -22,3 +22,5 @@ function Bars($http) {
     }
   };
 }
+
+
