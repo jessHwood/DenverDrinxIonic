@@ -40,6 +40,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	bottom: 7px;
 }
 
+#backBtn {
+    font-family: 'Oswald', sans-serif;
+}
+
 //////Main Bar Styles
 
 .item .item-content
@@ -57,12 +61,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 //////Styles for bar-details
 
 #card1{
+    font-family: 'Oswald', sans-serif;
     background-color: #185665;
     border-radius: 15px;
 }
 
+#card3 {
+    font-family: 'Oswald', sans-serif;
+    background-color: #185665;
+    
+}
+
 
 #time {
+    font-family: 'Oswald', sans-serif;
     font-size: 15px;
     position: relative;
     bottom: 8px;
@@ -70,28 +82,36 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 #miles {
+    font-family: 'Oswald', sans-serif;
     font-size: 15px;
     position: relative;
-    bottom: 30px;
+    bottom: 15px;
     color: #F9F9F9;
 }
 
 #name {
+    font-family: 'Oswald', sans-serif;
     font-size: 20px;
     position: relative;
-    top: 14px;
+    top: 10px;
+    left: 10px;
 }
 
 #address {
     position: relative;
     top: 14px;
     color: #F9F9F9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
-b{
+b {
+    font-family: 'Oswald', sans-serif;
     text-decoration: underline;
 }
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import url("https://fonts.googleapis.com/css?family=Pacifico:400");
+@import url("https://fonts.googleapis.com/css?family=Oswald:400");
