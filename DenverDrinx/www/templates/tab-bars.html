@@ -2,7 +2,7 @@
 <ion-nav-title class = "light">Happy Hours</ion-nav-title>
   <ion-content ng-controller ="BarsCtrl as barCtrl">
     <ion-list id="mainList" type="list-inset">
-      <ion-item style="background-color: #185665" id="mainList" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars" href="#/tab/bars/{{bar.id}}">
+      <ion-item style="background-color: #185665" id="mainList" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars | orderBy : 'distance()'" href="#/tab/bars/{{bar.id}}">
         
 
         <h2  id="name" class="light text-center">{{bar.name}}</h2>
@@ -10,9 +10,8 @@
 <!-- Need to fix alignment with bar name and make more stylish!!! -->
         <p id="time" class="text-right">{{ bar.timeLeft() }}</p>
 
-        
-        <p id="miles" class="text-left">{{ bar.distance() }}</p>
-        
+        <p id="miles" class="text-left">{{ barCtrl.distString(bar.distance()) }}</p>
+
 
 
 
