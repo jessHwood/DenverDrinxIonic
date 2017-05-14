@@ -6,28 +6,18 @@
       <div id="card1" class="item">
         <img class="full-image" ng-src="{{oneBar.bar.image}}" style="height: 380px">
       <!-- Below displays bar information -->
-      <div id="card1" class="item item-body light">
+      <div id="card3" class="item item-body light">
           <b>Details</b>
           <br>
           <br>
-          <ul>
-            <li>
               {{oneBar.bar.description}}
-            </li>
-            <li>
+            <hr>
               {{oneBar.bar.drinkSpecials}}
-            </li>
-            <li>
+            <hr>
               {{oneBar.bar.foodSpecials}}
-            </li>
-            <li>  <!-- Link to bar sites -->
-            <a id="card1" class="item text-center light" href="{{ oneBar.bar.website }}">{{ oneBar.bar.website }}</a>
-            </li>
-          </ul>
+            
+             <!-- Link to bar sites -->
+            <a id="card3" class="item text-center light" href="{{ oneBar.bar.website }}">{{ oneBar.bar.website }}</a>
       </div>  
   </ion-content>
 </ion-view>
-
-
-
-
