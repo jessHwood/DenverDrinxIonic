@@ -12,10 +12,10 @@ angular.module('controllers', [])
     $scope.data = {};
  
     $scope.login = function() {
-        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+        LoginService.loginUser($scope.data.username, $scope.data.password).success( data =>{
             $state.go('tab.bars');
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
+        }).error( data =>{
+            let alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',
                 template: 'Please check your credentials!'
             });
@@ -27,10 +27,10 @@ angular.module('controllers', [])
 MapCtrl.$inject = ['$cordovaGeolocation', 'Bars', '$http'];
 function MapCtrl($cordovaGeolocation, Bars, $http) {
 
-  var self = this;
-  self.getbars = Bars.all().then(function(res){
-  self.bars = res.data.filter(function(bar){
-    var date = new Date();
+  let self = this;
+  self.getbars = Bars.all().then( res =>{
+  self.bars = res.data.filter( bar =>{
+    let date = new Date();
     today = date.getDay();
     for (i = 0; i < bar.day.length; i++){
       if (bar.day[i] === today) { return bar; }
@@ -39,12 +39,12 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
   });
 
 
-  var options = {timeout: 10000, enableHighAccuracy: true};
+  let options = {timeout: 10000, enableHighAccuracy: true};
   //get position of user
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  $cordovaGeolocation.getCurrentPosition(options).then( position =>{
+    let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    var mapOptions = {
+    let mapOptions = {
       center: latLng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -54,7 +54,7 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
     
     google.maps.event.addListenerOnce(self.map, 'idle', function(){
     //this marker is the user's location
-      var marker = new google.maps.Marker({
+      let marker = new google.maps.Marker({
         map: self.map,
         position: latLng,
         icon: "../img/meMarker.png"
@@ -62,14 +62,14 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
       });  
 
       //for each bar, http request google and drop a marker on the map
-      self.bars.forEach(function(bar){
-        //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
-        var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
+      self.bars.forEach( bar =>{
+        //let APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+        let APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
         $http
           .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
-          .then(function(location){
+          .then( location =>{
             //marker specific to each bar
-            var marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
                 map: self.map,
                 animation: google.maps.Animation.DROP,
                 position: location.data.results[0].geometry.location,
@@ -78,7 +78,7 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
           });   
       });     
     });
-  }, function(error){
+  }, error =>{
     console.log("Could not get location");
   });
 });
@@ -87,11 +87,11 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 BarsCtrl.$inject = ['Bars', '$http', '$cordovaGeolocation'];
 function BarsCtrl(Bars, $http, $cordovaGeolocation) {
  //setTimeout(function(){
-  var self = this;
-  Bars.all().then(function(res){
+  let self = this;
+  Bars.all().then( res =>{
 
-    self.bars = res.data.filter(function(bar){
-    var date = new Date();
+    self.bars = res.data.filter( bar =>{
+    let date = new Date();
     today = date.getDay();
     for (i = 0; i < bar.day.length; i++){
       if (bar.day[i] === today) { return bar; }
@@ -99,28 +99,28 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
   });
 
 //create timer (and distance) of each bar
-  self.bars.forEach(function(bar){
+  self.bars.forEach( bar =>{
 
     //find distance to each bar
-    //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
-    var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
+    //let APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
+    let APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
 
    $http
       .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
-      .then(function(location){
+      .then( location =>{
         //get position of user
-        var options = {timeout: 5000, enableHighAccuracy: true};
+        let options = {timeout: 5000, enableHighAccuracy: true};
           
-          $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+          $cordovaGeolocation.getCurrentPosition(options).then( position =>{
 
     bar.distance = function(){
       //distance calculation
       function distance(lat1, lon1, lat2, lon2) {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1-lon2;
-        var radtheta = Math.PI * theta/180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        let radlat1 = Math.PI * lat1/180;
+        let radlat2 = Math.PI * lat2/180;
+        let theta = lon1-lon2;
+        let radtheta = Math.PI * theta/180;
+        let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
@@ -135,12 +135,12 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
 
     //timer function
     bar.timeLeft = function(){
-      var currentTime = new Date();
-      var timer = 0;
+      let currentTime = new Date();
+      let timer = 0;
     
           //get current time
-          var currentHour = currentTime.getHours();
-          var currentMinutes = currentTime.getMinutes();
+          let currentHour = currentTime.getHours();
+          let currentMinutes = currentTime.getMinutes();
 
       for (i = 0; i < this.day.length; i++){
           //account for events past midnight
@@ -195,7 +195,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
 
 });
 
-self.distString = function(miles){
+self.distString = miles =>{
   if (!miles) { return ""; }
   //if (miles < 0.01) { return '0.01 miles'; }
    return miles.toPrecision(2) + ' miles'; 
@@ -211,9 +211,9 @@ function fixTime(timer){
 }
 
 function toClockTime(timeArray){
-  var postfix = ' AM';
-  var hours = timeArray[0];
-  var minutes = timeArray[1];
+  let postfix = ' AM';
+  let hours = timeArray[0];
+  let minutes = timeArray[1];
   if (hours > 12) { //past noon
     hours -= 12; 
     postfix = ' PM'; 
@@ -226,8 +226,8 @@ function toClockTime(timeArray){
 
 }//end bar control
 function BarDetailCtrl(Bars, $stateParams) {
-  var self = this;
-  Bars.get($stateParams.barId).then(function(res){
+  let self = this;
+  Bars.get($stateParams.barId).then(res =>{
     self.bar = res.data;
   });
 
