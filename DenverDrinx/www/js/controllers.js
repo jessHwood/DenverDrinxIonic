@@ -107,6 +107,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
+        if (dist < 0.01) { return 0.01; }
         return dist;
       }
       return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
@@ -169,7 +170,9 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
 });
 
 self.distString = function(miles){
+  if (!miles) { return ""; }
    return miles.toPrecision(2) + ' miles'; 
+  
 };
 
 function fixTime(timer){

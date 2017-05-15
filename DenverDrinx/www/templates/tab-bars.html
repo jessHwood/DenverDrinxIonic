@@ -4,7 +4,7 @@
   <ion-content ng-controller ="BarsCtrl as barCtrl">
     <ion-list id="mainList" type="list-inset">
 
-      <ion-item id="mainList" style="margin: 5px" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars" href="#/tab/bars/{{bar.id}}">
+      <ion-item id="mainList" style="margin: 5px" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars | orderBy: 'distance()'" href="#/tab/bars/{{bar.id}}">
 
         <h2  id="name" class="light text-center">{{bar.name}}</h2>
 
