@@ -1,28 +1,24 @@
 <ion-view>
+	<ion-nav-title>Happy Hours<img id="logo" src="/img/beerLogo.png"></ion-nav-title>
 
-<ion-nav-title>Happy Hours<img id="logo" src="/img/DrinxLogo.png"></ion-nav-title>
-  <ion-content ng-controller ="BarsCtrl as barCtrl">
-    <ion-list id="mainList" type="list-inset">
-
-      <ion-item id="mainList" style="margin: 5px" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars" href="#/tab/bars/{{bar.id}}">
-
-        <h2  id="name" class="light text-center">{{bar.name}}</h2>
-
-<!-- Need to fix alignment with bar name and make more stylish!!! -->
-        <p id="time" class="text-right">{{ bar.timeLeft() }}</p>
-
-
-        <p id="miles" class="text-left">{{ barCtrl.distString(bar.distance()) }}</p>
-        
+    <ion-nav-bar ng-click="login()">
+  <ion-nav-buttons side="left">  
+    <button class="button button-icon button-dark button-clear icon ion-person" style="position:absolute; right: 20px; font-size:17px;"></button>        
+  </ion-nav-buttons>
+</ion-nav-bar>
+  
 
 
 
 
+  		<ion-content ng-controller ="BarsCtrl as barCtrl">
+    		<ion-list id="mainList" type="list-inset">
 
-
-        
-
-      </ion-item>
+      		<ion-item id="mainList" style="margin: 5px" class="item-remove-animate item-light item-text-wrap" ng-repeat="bar in barCtrl.bars" href="#/tab/bars/{{bar.id}}">
+        		<h2  id="name" class="light text-center">{{bar.name}}</h2>
+       			 <p id="time" class="text-right">{{ bar.timeLeft() }}</p>
+				 <p id="miles" class="text-left">{{ barCtrl.distString(bar.distance()) }}</p>
+      		</ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

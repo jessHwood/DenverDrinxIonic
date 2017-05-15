@@ -28,6 +28,14 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
 
   $stateProvider
 
+  //Login
+  .state('login', {
+    cache: false,
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',

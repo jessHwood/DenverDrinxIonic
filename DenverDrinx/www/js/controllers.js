@@ -4,8 +4,8 @@ angular.module('controllers', [])
 .controller('BarsCtrl', BarsCtrl)
 .controller('BarDetailCtrl', BarDetailCtrl)
 .controller('UberCtrl', UberCtrl)
+.controller('LoginCtrl', LoginCtrl);
 
-.controller('AccountCtrl', AccountCtrl); //to be scapped
 
 MapCtrl.$inject = ['$cordovaGeolocation', 'Bars', '$http'];
 function MapCtrl($cordovaGeolocation, Bars, $http) {
@@ -208,7 +208,25 @@ function UberCtrl(){
 }
 
 
-function AccountCtrl() {
+//Login
+LoginCtrl.$inject = ['$scope', '$state', '$http', '$ionicPopup', '$ionicLoading', '$q', '$rootScope'];
+  function LoginCtrl($scope, $state, $http, $ionicPopup, $ionicLoading, $q, $rootScope){
+    $scope.user = {};
+  
+      $scope.login = function() {
+      //heroku link here
+      $http.get('' + $scope.user.userID + '/' + $scope.user.password)
+      .then( function (response) {
+      // If successful login
+      $state.go('/tab/bars', {}, {reload: true});
+    })
+    .catch(function (e){
+       alert(e);
+    })
+    .finally(function (e) {
+      // do something
+    });
+  };
+};
 
-}
 
