@@ -8,7 +8,7 @@ $light:                           #fff !default;
 // $stable:                       #f8f8f8 !default;
 // $positive:                     #387ef5 !default; $calm:                            #6c5b7b !default;
 $balanced:                        #79CDCD !default;
-$energized:                       #f67280 !default;
+$energized:                       #c06c84 !default;
 $assertive:                       #7f8c8d !default;
 $royal:                           #355c7d !default; $dark:                            #000 !default;
 
@@ -23,6 +23,23 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
     background-color: $balanced;
 }
+
+/////LOGIN
+
+#backimg {
+    background: url('../img/bg-login.jpg') no-repeat;
+     background-size: 100%;
+
+}
+
+#mainlogo {
+    float: left;
+    height: 40px;
+    position: relative;
+    top: 3px;
+    left: 8px;
+}
+
 //////Google Map Style
 #map {
     width: 100%;
@@ -36,7 +53,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	font-size: 25px;
 	position: relative;
 	bottom: 5px;
-    color: #f67280;
+    right: 15px;
+    color: #c06c84;
 }
 
 #backBtn {
