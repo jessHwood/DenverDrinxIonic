@@ -23,6 +23,13 @@
 #backBtn {
   font-family: 'Oswald', sans-serif; }
 
+#logo {
+  float: left;
+  height: 40px;
+  position: relative;
+  top: 2px;
+  left: 8px; }
+
 .item .item-content {
   background-color: transparent !important; }
 
@@ -61,7 +68,8 @@
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   position: relative;
-  top: 20px; }
+  top: 20px;
+  left: 10px; }
 
 #address {
   position: relative;

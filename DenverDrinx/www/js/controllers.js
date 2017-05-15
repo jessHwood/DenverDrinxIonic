@@ -22,7 +22,6 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
   });
 
 
-
   var options = {timeout: 10000, enableHighAccuracy: true};
   //get position of user
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){

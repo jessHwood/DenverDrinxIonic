@@ -45,6 +45,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //////Main Bar Styles
 
+#logo {
+    float: left;
+    height: 40px;
+    position: relative;
+    top: 2px;
+    left: 8px;
+}
+
 .item .item-content
 {
     background-color: transparent !important;
@@ -96,6 +104,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-size: 20px;
     position: relative;
     top: 20px;
+    left: 10px;
     
 }
 
