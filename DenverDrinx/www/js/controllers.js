@@ -5,7 +5,24 @@ angular.module('controllers', [])
 .controller('BarDetailCtrl', BarDetailCtrl)
 .controller('UberCtrl', UberCtrl)
 
-.controller('AccountCtrl', AccountCtrl); //to be scapped
+.controller('AccountCtrl', AccountCtrl) //to be scapped
+
+//Login controller
+.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+    $scope.data = {};
+ 
+    $scope.login = function() {
+        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+            $state.go('tab.bars');
+        }).error(function(data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
+        });
+    }
+});
+
 
 MapCtrl.$inject = ['$cordovaGeolocation', 'Bars', '$http'];
 function MapCtrl($cordovaGeolocation, Bars, $http) {
@@ -107,7 +124,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
-        //if (dist < 0.01) { return 0.01; }
+        if (dist < 0.1) { return 0.1; }
         return dist;
       }
       return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
