@@ -1,7 +1,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories'])
+angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories']) //'ngMockE2E'
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,6 +27,15 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
   // Each state's controller can be found in controllers.js
 
   $stateProvider
+
+  //login state
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl',
+  })
+
+
 
   // setup an abstract state for the tabs directive
     .state('tab', {
@@ -87,6 +96,9 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/bars');
+  //
+  $urlRouterProvider.otherwise('/login');
+  //$urlRouterProvider.otherwise('/tab/bars');
+  
 
 });
