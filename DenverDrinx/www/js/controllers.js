@@ -112,7 +112,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         var options = {timeout: 5000, enableHighAccuracy: true};
           
           $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-        
+
     bar.distance = function(){
       //distance calculation
       function distance(lat1, lon1, lat2, lon2) {
@@ -124,7 +124,9 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
         dist = Math.acos(dist);
         dist = dist * 180/Math.PI;
         dist = dist * 60 * 1.1515;
+
         if (dist < 0.1) { return 0.1; }
+
         return dist;
       }
       return distance(position.coords.latitude, position.coords.longitude, location.data.results[0].geometry.location.lat, location.data.results[0].geometry.location.lng);
@@ -135,16 +137,16 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
     bar.timeLeft = function(){
       var currentTime = new Date();
       var timer = 0;
-      //problem with events that go past midnight (i.e WILLCALL bar)
+    
+          //get current time
+          var currentHour = currentTime.getHours();
+          var currentMinutes = currentTime.getMinutes();
 
       for (i = 0; i < this.day.length; i++){
           //account for events past midnight
           if (this.hours[i][1] < this.hours[i][0]){
             this.hours[i][1] += 23;
           }
-          //get current time
-          var currentHour = currentTime.getHours();
-          var currentMinutes = currentTime.getMinutes();
          
           //happy hour has not started yet
           if (currentHour <= this.hours[i][0]){
@@ -152,6 +154,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.hours[i][0] - currentHour) * 60;
             timer += (this.minutes[i][0] - currentMinutes);
             if (timer > 0){
+              this.timer = timer;
               return 'Starts at ' + toClockTime([this.hours[i][0], this.minutes[i][0]]);
             } 
             //or is happy hour is in progress?
@@ -159,6 +162,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
               timer = 0;
               timer += (this.hours[i][1] - currentHour) * 60;
               timer += (this.minutes[i][1] - currentMinutes);
+              this.timer = timer;
               return 'Ends in ' + fixTime(timer);
             }
           }
@@ -169,26 +173,32 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             timer += (this.minutes[i][1] - currentMinutes);
             //still time left!
             if (timer > 0){
+              this.timer = timer;
               return 'Ends in ' + fixTime(timer);
             }   
             //or has it ended?
             if (timer <= 0) {
+              this.timer = timer;
               return 'Ended';
             }
           }
         }
 
     };//end timer
-    });
-    });
+
+    });//geolocation
+
+    });//promise
   });
-  //sort???
+  
 
 });
 
 self.distString = function(miles){
   if (!miles) { return ""; }
+  //if (miles < 0.01) { return '0.01 miles'; }
    return miles.toPrecision(2) + ' miles'; 
+  
   
 };
 
