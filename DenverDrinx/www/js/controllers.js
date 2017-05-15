@@ -179,6 +179,7 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
             //or has it ended?
             if (timer <= 0) {
               this.timer = timer;
+              this.styler = { "color": "red" };
               return 'Ended';
             }
           }
