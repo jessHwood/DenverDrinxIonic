@@ -63,10 +63,8 @@ function MapCtrl($cordovaGeolocation, Bars, $http) {
 
       //for each bar, http request google and drop a marker on the map
       self.bars.forEach(function(bar){
-        //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
-        var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
         $http
-          .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
+          .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ')
           .then(function(location){
             //marker specific to each bar
             var marker = new google.maps.Marker({
@@ -102,11 +100,8 @@ function BarsCtrl(Bars, $http, $cordovaGeolocation) {
   self.bars.forEach(function(bar){
 
     //find distance to each bar
-    //var APIkey = '&key=AIzaSyAjuUQ2aRpUh5usOm0MYAex-9MgiBEA9Jg';
-    var APIkey = '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ';
-
    $http
-      .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + APIkey)
+      .get('https://maps.googleapis.com/maps/api/geocode/json?address=' + bar.address + '&key=AIzaSyAyK0Os0XVzIhzeOk0ZJw5OTAf7rdeNXGQ')
       .then(function(location){
         //get position of user
         var options = {timeout: 5000, enableHighAccuracy: true};

@@ -56,6 +56,7 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
     }
   })
 
+// takes you to all bars view
   .state('tab.bars', {
       url: '/bars',
       views: {
@@ -65,6 +66,8 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
         }
       }
     })
+
+// once you click on a bar this takes you to full bar detail with deals and website
     .state('tab.bar-detail', {
       url: '/bars/:barId',
       views: {
@@ -75,6 +78,7 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
       }
     })
 
+//currently not using this tab - will be moving it to lyft as well
   .state('tab.uber', {
     url : '/uber',
     views: {
@@ -85,6 +89,7 @@ angular.module('denver-drinx', [ 'ionic', 'ngCordova', 'controllers', 'factories
     }
   })
 
+//this is being use as our "About Us" page
   .state('tab.account', {
     url: '/account',
     views: {
